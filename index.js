@@ -37,7 +37,7 @@ app.use(app.oauth.errorHandler());
 app.use("/auth", routes);
 app.use("/test", testAPIRoutes);
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	console.log(`listening on port ${port}`);
 });
