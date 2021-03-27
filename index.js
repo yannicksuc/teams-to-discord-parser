@@ -1,43 +1,53 @@
-// Database imports
-const pgPool = require("./db/pgWrapper");
-const tokenDB = require("./db/tokenDB")(pgPool);
-const userDB = require("./db/userDB")(pgPool);
+const app = require('express')()
+const basicAuth = require('express-basic-auth')
+var bodyParser = require('body-parser')
 
-// OAuth imports
-const oAuthService = require("./auth/tokenService")(userDB, tokenDB);
-const oAuth2Server = require("node-oauth2-server");
 
-// Express
-const express = require("express");
-const app = express();
-app.oauth = oAuth2Server({
-	model: oAuthService,
-	grants: ["password"],
-	debug: true,
-});
+var customAuthorizerAuth = basicAuth({
+	authorizer: myAuthorizer
+})
 
-const testAPIService = require("./test/testAPIService.js");
-const testAPIRoutes = require("./test/testAPIRoutes.js")(
-	express.Router(),
-	app,
-	testAPIService
-);
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
-// Auth and routes
-const authenticator = require("./auth/authenticator")(userDB);
-const routes = require("./auth/routes")(
-	express.Router(),
-	app,
-	authenticator
-);
-const bodyParser = require("body-parser");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(app.oauth.errorHandler());
-app.use("/auth", routes);
-app.use("/test", testAPIRoutes);
+app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
+	try {
+		var data = req.body.content;
+		var h2m = require('h2m')
+		var md = h2m(data, {
+			overides: {
+				li: function (node) {
+					if (node.md) {
+						return ` • ${node.md}\n`
+					}
+				},
+				s: function (node) {
+					if (node.md) {
+						return `~~${node.md}~~`
+					}
+				}
+			}
+		})
+		md = md.replace(/\\t(?!•)(.+\n)/g, "   $1")
+		md = md.replace(/\n\\t/g, '')
+		md = md.replace(/\n\n/g, '\n')
+		md = md.replace(/\\t/g, '')
+		md = md.replace(/ +•/g, " •")
+		md = md.replace(/\!\[(.+?)\]\(https\:\/\/statics\.teams\.cdn\.office\.net\/evergreen\-assets\/skype\/v2\/[a-zA-Z\-_]+\/20\.png\)/g, "$1")
+		res.send(md);
+	} catch (err) {
+		console.error(err)
+	}
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
 	console.log(`listening on port ${port}`);
 });
+
+
+//Custom authorizer checking if the username starts with 'A' and the password with 'secret'
+function myAuthorizer(username, password) {
+	return username.startsWith(process.env.DB_USER) && password.startsWith(process.env.DB_PASSWORD)
+}

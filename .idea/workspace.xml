@@ -3,10 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="063ebc00-e695-4931-a093-b06639ade59f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/pgWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/pgWrapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authenticator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/tokenService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/pgWrapper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/tokenDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/userDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testAPIService.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/testAPIService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testAPIRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testAPIService.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +81,7 @@
       <updated>1616479681172</updated>
       <workItem from="1616479683450" duration="4521000" />
       <workItem from="1616775220007" duration="12816000" />
-      <workItem from="1616799975479" duration="13595000" />
+      <workItem from="1616799975479" duration="17289000" />
     </task>
     <servers />
   </component>
@@ -103,6 +110,24 @@
           <url>file://$PROJECT_DIR$/auth/authenticator.js</url>
           <line>13</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/testAPIService.js</url>
+          <line>5</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.js</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.js</url>
+          <line>15</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
