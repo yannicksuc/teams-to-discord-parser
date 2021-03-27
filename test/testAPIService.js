@@ -5,7 +5,7 @@ module.exports = {
 function helloWorld(req, res) {
 	const fs = require('fs')
 	try {
-		var data = req.content;
+		var data = req.body.content;
 		var h2m = require('h2m')
 		var md = h2m(data, {
 			overides: {
