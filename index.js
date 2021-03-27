@@ -7,7 +7,8 @@ var customAuthorizerAuth = basicAuth({
 	authorizer: myAuthorizer
 })
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 	try {
