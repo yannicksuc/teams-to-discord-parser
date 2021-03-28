@@ -25,7 +25,7 @@ app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 			overides: {
 				li: function (node) {
 					if (node.md) {
-						return ` • ${node.md}\n`
+						return ` • ${node.md}`
 					}
 				},
 				s: function (node) {
