@@ -25,7 +25,7 @@ app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 			overides: {
 				li: function (node) {
 					if (node.md) {
-						return ` • ${node.md}`
+						return ` • ${node.md}\n`
 					}
 				},
 				s: function (node) {
@@ -37,7 +37,7 @@ app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 		})
 		md = md.replace(/\\t(?!•)(.+\n)/g, "   $1")
 		md = md.replace(/\n\\t/g, '')
-		md = md.replace(/\n\n/g, '\n')
+		md = md.replace(/ *\n *\n/g, '\n')
 		md = md.replace(/\\t/g, '')
 		md = md.replace(/ +•/g, " •")
 		md = md.replace(/\!\[(.+?)\]\(https\:\/\/statics\.teams\.cdn\.office\.net\/evergreen\-assets\/skype\/v2\/[a-zA-Z\-_]+\/20\.png\)/g, "$1")
