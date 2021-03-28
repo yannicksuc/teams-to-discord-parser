@@ -11,8 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
-	try {
+	try{
 		console.log(req.body);
+		console.log(req.body.content);
+	} catch (err)
+	{
+	}
+	try {
+		console.log(req.body['content']);
 		var data = req.body.content;
 		var h2m = require('h2m')
 		var md = h2m(data, {
