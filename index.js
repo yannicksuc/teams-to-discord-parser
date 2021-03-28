@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 	try {
 		console.log(req.body);
-		var data = JSON.parse(Object.keys(req.body)[0]).content;
+		var data = req.body.content;
 		var h2m = require('h2m')
 		var md = h2m(data, {
 			overides: {
@@ -38,6 +38,7 @@ app.post('/html-to-markdown', customAuthorizerAuth, function(req, res) {
 		res.send(md);
 	} catch (err) {
 		console.error(err)
+		res.send(req.body);
 	}
 })
 
